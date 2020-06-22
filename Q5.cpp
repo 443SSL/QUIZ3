@@ -11,7 +11,7 @@ using namespace std;
  exactly NP producers run first, then exactly NC, and the whole thing
  should repeat in that order */
 
-#define NP 10   
+#define NP 3   
 #define NC 5
 
 int buffer = 0;
@@ -32,9 +32,12 @@ void producer_function (int pno){
 		// you should not need to change this block
 		mtx.P();
 		buffer ++;
+
 		cout << "Producer [" << pno << "] left buffer=" << buffer << endl;
+
         npdone++;
         if(npdone == NP){
+            
             npdone = 0;
             for (int i = 0; i < NC; i++){
                 producerdone.V();
@@ -64,6 +67,7 @@ void consumer_function (int cno){
 		mtx.P();
 		ncdone ++;
 		if (ncdone == NC){ // it is the last one 
+
             ncdone = 0; // reset the counter
             for(int i = 0; i < NP; i++){
 			    consumerdone.V(); // so wake up the producer
