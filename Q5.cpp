@@ -11,7 +11,7 @@ using namespace std;
  exactly NP producers run first, then exactly NC, and the whole thing
  should repeat in that order */
 
-#define NP 10    
+#define NP 10   
 #define NC 5
 
 int buffer = 0;
@@ -64,10 +64,10 @@ void consumer_function (int cno){
 		mtx.P();
 		ncdone ++;
 		if (ncdone == NC){ // it is the last one 
+            ncdone = 0; // reset the counter
             for(int i = 0; i < NP; i++){
 			    consumerdone.V(); // so wake up the producer
             }
-			ncdone = 0; // reset the counter
 		}
 		mtx.V();
 	}
