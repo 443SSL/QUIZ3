@@ -1,0 +1,2 @@
+g++ Semaphore.h Q5.cpp -lpthread
+
