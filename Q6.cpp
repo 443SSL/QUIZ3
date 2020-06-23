@@ -17,7 +17,6 @@ void A_func(){
     while(true){
         C_done.P();
         cout << "Thread: A Running" << endl;
-
         A_done.V();
         A_done.V();
     }
@@ -26,7 +25,6 @@ void A_func(){
 void B_func(){
     while(true){
         A_done.P();
-
         usleep(500000);
         mtx.P();
         cout << "Thread: B Running" << endl;
@@ -52,13 +50,13 @@ int main(){
     vector<thread> B_vec;
     vector<thread> C_vec;
 
-    for(int i = 0; i < 20; i++){
+    for(int i = 0; i < 10; i++){
         A_vec.push_back(thread(A_func));
         B_vec.push_back(thread(B_func));
         C_vec.push_back(thread(C_func));
     }
 
-    for(int i = 0; i < 20; i++){
+    for(int i = 0; i < 10; i++){
         A_vec[i].join();
         B_vec[i].join();
         C_vec[i].join();
