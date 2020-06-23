@@ -1,2 +1,3 @@
+g++ Semaphore.h 1PNC.cpp -lpthread
 g++ Semaphore.h Q5.cpp -lpthread
-
+g++ Semaphore.h Q6.cpp -lpthread
